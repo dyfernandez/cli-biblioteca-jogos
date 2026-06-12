@@ -11,5 +11,3 @@ class Jogo:
     def __str__(self):
         return f"{self.titulo} — {self.genero}, {self.data_lancamento}, {self.desenvolvedora}, {self.horas_jogadas}, {self.status}"
     
-jogo = Jogo("Dark Souls", "RPG", "2011-09-22", "FromSoftware", 120, "Zerado")
-print(jogo)
