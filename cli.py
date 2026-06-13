@@ -28,5 +28,18 @@ def adicionar_jogo():
     conn.close()
     
     print('Jogo adicionado com sucesso!')
+
+def listar_jogos():
+    conn = sqlite3.connect('jogos.db')
+    cursor = conn.cursor()
     
+    cursor.execute('SELECT * FROM jogos')
+    jogos = cursor.fetchall()
+    
+    for jogo in jogos:
+        print(f'ID: {jogo[0]} | Titulo: {jogo[1]} | Gênero: {jogo[2]} | Data de Lançamento: {jogo[3]} | Desenvolvedora: {jogo[4]} | Horas jogadas: {jogo[5]}h | Status: {jogo[6]}')
+    
+    conn.close()
+
+listar_jogos()
 adicionar_jogo()
