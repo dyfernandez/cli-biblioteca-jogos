@@ -19,4 +19,16 @@ def criar_banco():
     conn.commit()
     conn.close()
     
-criar_banco()
+def adicionar_coluna_deletado():
+    conn = sqlite3.connect('jogos.db')
+    cursor = conn.cursor()
+    
+    cursor.execute('ALTER TABLE jogos ADD COLUMN deletado INTEGER DEFAULT 0')
+    
+    conn.commit()
+    conn.close()
+    
+ 
+
+#adicionar_coluna_deletado()   
+#criar_banco()
