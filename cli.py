@@ -62,7 +62,7 @@ def editar_jogos():
         'Status': 'status'
     }
     if edit_jogos == 'Status':
-        game_status = ['Não jogado', 'Zerado', 'Jogado', 'Abandonado']
+        game_status = ['Não jogado', 'Zerado', 'Jogando', 'Abandonado']
         for i, s in enumerate(game_status, 1):
             print(f'{i}, {s}')
         novo_valor = game_status [int(input('Selecione o novo Status: ')) -1]    
