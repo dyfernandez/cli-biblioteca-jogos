@@ -80,6 +80,45 @@ def editar_jogos():
     conn.close()
 
 
+def deletar_jogo():
+    conn = sqlite3.connect('jogos.db')
+    listar_jogos()
+    id = int(input('Selecione o jogo que deseja deletar: '))
+    
+    cursor = conn.cursor()
+    cursor.execute('UPDATE jogos SET deletado = 1 WHERE id = ?', (id,))
+    
+    conn.commit()
+    conn.close()
+
+def restaurar_jogo():
+    conn = sqlite3.connect('jogos.db')
+    
+    cursor = conn.cursor()
+    cursor.execute('SELECT * FROM jogos WHERE deletado = 1')
+    jogos = cursor.fetchall()
+    
+    if not jogos:
+        print('Nenhum jogo deletado encontrado.')
+        conn.close()
+        return
+    
+    for jogo in jogos:
+        print(f'ID: {jogo[0]} | Titulo: {jogo[1]} | Gênero: {jogo[2]} | Desenvolvedora: {jogo[4]}')   
+    
+
+    id = int(input('Selecione o ID jogo que deseja restaurar: '))
+   
+    cursor.execute('UPDATE jogos SET deletado = 0 WHERE id = ?', (id,))
+   
+    conn.commit()
+    conn.close()
+    
+    print(f'Jogo com ID {id} restaurado com sucesso!')
+    
+    
 #listar_jogos()
 #adicionar_jogo()
-editar_jogos()
+#editar_jogos()
+#deletar_jogo()
+#restaurar_jogo()
